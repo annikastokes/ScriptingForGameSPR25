@@ -4,6 +4,8 @@ using System.Collections;
 public class togglefog : MonoBehaviour
 {
 
+    public Material night;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,11 +20,10 @@ public class togglefog : MonoBehaviour
 
     public void ToggleFog()
     {
-    
-       
-       RenderSettings.fog = !RenderSettings.fog;
-       
-        DynamicGI.UpdateEnvironment();
+
+        RenderSettings.fog = !RenderSettings.fog;
+
+            DynamicGI.UpdateEnvironment();
 
         Debug.Log("The fog has been toggled!");
     }

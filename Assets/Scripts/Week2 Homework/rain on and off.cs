@@ -12,6 +12,10 @@ public class rainonandoff : MonoBehaviour
 
     public Material dusk;
 
+    public AudioSource source;
+
+    public AudioClip rainsounds;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,13 +32,26 @@ public class rainonandoff : MonoBehaviour
     public void ToggleActiveState()
     {
         rain.SetActive(!rain.activeSelf);
-        if (rain.activeSelf)
+
+        RenderSettings.skybox = rainy;
+
+        source.clip = rainsounds;
+        source.Play();
+            
+        if (rain.activeSelf == true)
         {
-            RenderSettings.skybox = rainy;
+            source.Play();
+            rain.SetActive(true);
+        }
+        else
+        {
+            source.Stop();  
+            rain.SetActive(false);
         }
 
         DynamicGI.UpdateEnvironment();
 
         Debug.Log("the rain has been toggled");
-     }
+    }
 }
+

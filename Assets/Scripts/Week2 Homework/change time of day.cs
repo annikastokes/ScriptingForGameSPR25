@@ -12,6 +12,10 @@ public class changetimeofday : MonoBehaviour
 
     public GameObject rain;
 
+    public GameObject dawnlight;
+    public GameObject noonlight;
+    public GameObject biglight;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,47 +26,101 @@ public class changetimeofday : MonoBehaviour
     void Update()
     {
         Debug.Log("the time of day has changed");
+    }
 
-        if (Input.GetKeyDown(KeyCode.A))
+    public void Dawn()
+    {
+        RenderSettings.skybox = dawn;
+        dawnlight.SetActive(!dawnlight.activeSelf);
+
+        if (rain.activeSelf)
         {
-            RenderSettings.skybox = dawn;
-
-            if (rain.activeSelf)
-            {
-                RenderSettings.skybox = rainy;
-            }
+            RenderSettings.skybox = rainy;
         }
 
-        if (Input.GetKeyDown(KeyCode.B))
-            {
-                RenderSettings.skybox = dusk;
-
-                if(rain.activeSelf)
-                {
-                    RenderSettings.skybox = nightrainy;
-                }
-            }
-
-        if (Input.GetKeyDown(KeyCode.C))
-            {
-                RenderSettings.skybox = noon;
-
-                if (rain.activeSelf)
-                {
-                    RenderSettings.skybox = rainy;
-                }
-            }
-
-        if (Input.GetKeyDown(KeyCode.D))
+        if (biglight.activeSelf == false)
         {
-            RenderSettings.skybox = night;
-
-            if (rain.activeSelf)
-            {
-                RenderSettings.skybox = nightrainy;
-            }
+            biglight.SetActive(true);
         }
-            
-      
+
+        if (noonlight.activeSelf)
+        {
+            noonlight.SetActive(false);
+        }
+
+    }
+
+    public void Dusk()
+    {
+        RenderSettings.skybox = dusk;
+
+        if (rain.activeSelf)
+        {
+            RenderSettings.skybox = nightrainy;
+        }
+
+        if (dawnlight.activeSelf)
+        {
+            dawnlight.SetActive(false);
+        }
+
+        if (noonlight.activeSelf)
+        {
+            noonlight.SetActive(false);
+        }
+
+        if (biglight.activeSelf == false)
+        {
+            biglight.SetActive(true);
+        }
+
+
+
+    }
+
+    public void Night()
+    {
+        RenderSettings.skybox = night;
+        biglight.SetActive(false);
+
+        if (rain.activeSelf)
+        {
+            RenderSettings.skybox = nightrainy;
+
+            if (dawnlight.activeSelf)
+            {
+                dawnlight.SetActive(false);
+            }
+
+            if (noonlight.activeSelf)
+            {
+                noonlight.SetActive(false);
+            }
+
+        }
+
+    }
+
+    public void Noon()
+    {
+        RenderSettings.skybox = noon;
+        noonlight.SetActive(!noonlight.activeSelf);
+
+        if (rain.activeSelf)
+        {
+            RenderSettings.skybox = rainy;
+        }
+
+        if (dawnlight.activeSelf)
+        {
+            dawnlight.SetActive(false);
+        }
+
+        if (biglight.activeSelf == false)
+        {
+            biglight.SetActive(true);
+        }
+
+
     }
 }
