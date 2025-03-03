@@ -11,6 +11,8 @@ TagManager:
   - Floor
   - up
   - down
+  - key
+  - door
   layers:
   - Default
   - TransparentFX
