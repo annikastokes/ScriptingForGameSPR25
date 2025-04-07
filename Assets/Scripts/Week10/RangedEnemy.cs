@@ -22,4 +22,4 @@ public class RangedEnemy : Enemy
         base.Update();
 
     }
-}
+}	

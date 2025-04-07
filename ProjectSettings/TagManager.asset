@@ -13,11 +13,12 @@ TagManager:
   - down
   - key
   - door
+  - visioncone
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - ignore NavObstacle
   - Water
   - UI
   - 

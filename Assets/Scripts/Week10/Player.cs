@@ -31,4 +31,15 @@ public class Player : MonoBehaviour
     {
 
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("vision cone is coning");
+
+        if (other.tag == "visioncone")
+        {  
+            other.GetComponentInParent<Enemy>().SeePlayer();
+            Debug.Log("she cone on my vision");
+        }
+    }
 }
